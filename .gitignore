@@ -1,0 +1,13 @@
+# generated files
+dist
+docs
+release
+*.css
+
+# libs
+node_modules
+
+# IDE
+.idea
+.komodotools
+*.komodoproject

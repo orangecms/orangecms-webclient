@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="appOrangeCMS">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Orange CMS - Web Client</title>
+
+    <!-- build:css css/orangecms.min.css -->
+    <link rel="stylesheet" type="text/css"
+          href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- endbuild -->
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                        data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Orange CMS</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Posts -->
+    <div class="container col-sm-9 col-xs-12">
+        <div class="posts" ng-controller="PostsController">
+            <h2>Latest posts</h2>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="post in posts">
+                    <div class="media" ng-if="post.media">
+                        <div class="media-body">
+                            <h3 class="media-heading">{{post.title}}</h3>
+                            {{post.date}}<br />
+                            {{post.text}}
+                        </div>
+                        <div class="media-right">
+                            <a href="#">
+                                <img class="media-object"
+                                     src="{{'/media/image/' + post.id + post.media}}"
+                                     alt="{{post.title}}">
+                            </a>
+                        </div>
+                    </div>
+                    <div ng-if="!post.media">
+                        <h3>{{post.title}}</h3>
+                        {{post.date}}<br />
+                        {{post.text}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="container col-sm-3 col-xs-12">
+        <div class="tags" ng-controller="TagsController">
+            <h2>Tags</h2>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="tag in tags">
+                    <a href="#">{{tag.tag}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- build:js js/orangecms.min.js -->
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="js/OrangeCMS.js"></script>
+    <script src="js/Posts.js"></script>
+    <script src="js/Tags.js"></script>
+    <!-- endbuild -->
+
+</body>
+</html>
